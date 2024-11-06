@@ -1,5 +1,6 @@
 # 선 위의 마법사 🖌🎉
-🪄 Create Wizard on the Line! <br><br>
+
+🧙‍♂ Create Wizard on the Line! <br><br>
 Blog :  <br>
 Youtube :
 
