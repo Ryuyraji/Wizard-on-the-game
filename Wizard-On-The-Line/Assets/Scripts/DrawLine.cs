@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DrawLine : MonoBehaviour
 {
+    public bool drawMode = true;
+
     [SerializeField]
     GameObject LinePrefab;          // 생성할 라인 프리팹
 
@@ -19,21 +21,27 @@ public class DrawLine : MonoBehaviour
     void Start()
     {
         LineContainer = GameObject.Find("LineContainer");
+        if (drawMode) GetComponent<EraseLine>().eraseMode = false;
     }
 
     void Update()
     {
-        // 마우스 클릭 시 - 라인 인스턴스 생성
-        if (Input.GetMouseButtonDown(0))
-            LineStart();
+        if (drawMode)
+        {
+            GetComponent<EraseLine>().eraseMode = false;
 
-        // 마우스 클릭 중
-        else if (Input.GetMouseButton(0))
-            LineDraw();
+            // 마우스 클릭 시 - 라인 인스턴스 생성
+            if (Input.GetMouseButtonDown(0))
+                LineStart();
 
-        // 마우스 클릭 해제 시
-        else if (Input.GetMouseButtonUp(0))
-            LineEnd();
+            // 마우스 클릭 중
+            else if (drawMode && Input.GetMouseButton(0))
+                LineDraw();
+
+            // 마우스 클릭 해제 시
+            else if (Input.GetMouseButtonUp(0))
+                LineEnd();
+        }
     }
 
     void LineStart()

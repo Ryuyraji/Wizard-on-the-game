@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 294994266}
+  - component: {fileID: 294994265}
   - component: {fileID: 294994267}
   m_Layer: 0
   m_Name: DrawManager
@@ -139,6 +140,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &294994265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294994264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894c281802cedaa4c801cd9f0ee219cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawMode: 1
+  LinePrefab: {fileID: 2267706797380695238, guid: 1bf9627c8a530894f8edc0c0067942e1, type: 3}
+  LineContainer: {fileID: 0}
 --- !u!4 &294994266
 Transform:
   m_ObjectHideFlags: 0
@@ -163,11 +179,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 294994264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 894c281802cedaa4c801cd9f0ee219cd, type: 3}
+  m_Script: {fileID: 11500000, guid: c5266c4360fe773418524693f48a0418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LinePrefab: {fileID: 2267706797380695238, guid: 1bf9627c8a530894f8edc0c0067942e1, type: 3}
+  eraseMode: 0
   LineContainer: {fileID: 0}
+  radius: 0.5
 --- !u!1 &332946658
 GameObject:
   m_ObjectHideFlags: 0
