@@ -12,6 +12,12 @@ public class DrawLine : MonoBehaviour
     [SerializeField]
     GameObject LineContainer;       // 라인 프리팹 생성 위치
 
+    [SerializeField]
+    Color lineColor = Color.white;  // 선 색상 (기본값: 흰색)
+
+    [SerializeField]
+    float lineWidth = 0.1f;         // 선 굵기 (기본값: 0.1f)
+
     LineRenderer lineRenderer;
     EdgeCollider2D edgeCollider;
 
@@ -50,9 +56,11 @@ public class DrawLine : MonoBehaviour
         GameObject draw = Instantiate(LinePrefab);
         draw.transform.SetParent(LineContainer.transform);
 
-
         lineRenderer = draw.GetComponent<LineRenderer>();
         edgeCollider = draw.GetComponent<EdgeCollider2D>();
+
+        ApplyLineMaterialColor(); // 색상 적용
+        ApplyLineWidth();         // 선 굵기 적용
 
         // 마우스 위치 기준 라인 렌더러 포인트 설정
         Vector2 startPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -78,5 +86,40 @@ public class DrawLine : MonoBehaviour
     void LineEnd()
     {
         mousePoint.Clear();
+    }
+
+    public void ChangeLineColor(Color newColor)
+    {
+        lineColor = newColor;
+        ApplyLineMaterialColor(); // 색상 변경
+    }
+
+    public void ChangeLineWidth(float newWidth)
+    {
+        lineWidth = Mathf.Clamp(newWidth, 0.1f, 1f);  // 선 굵기 범위 제한
+        ApplyLineWidth();  // 선 굵기 적용
+    }
+
+    // 머티리얼을 이용한 색상 적용
+    void ApplyLineMaterialColor()
+    {
+        if (lineRenderer != null)
+        {
+            Material mat = lineRenderer.material;
+            if (mat != null)
+            {
+                mat.color = lineColor;  // 머티리얼의 색상을 변경
+            }
+        }
+    }
+
+    // 선의 굵기를 적용하는 메서드
+    void ApplyLineWidth()
+    {
+        if (lineRenderer != null)
+        {
+            lineRenderer.startWidth = lineWidth;
+            lineRenderer.endWidth = lineWidth;
+        }
     }
 }
