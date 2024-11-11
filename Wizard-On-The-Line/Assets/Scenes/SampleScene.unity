@@ -133,7 +133,6 @@ GameObject:
   - component: {fileID: 294994266}
   - component: {fileID: 294994265}
   - component: {fileID: 294994267}
-  - component: {fileID: 294994268}
   m_Layer: 0
   m_Name: DrawManager
   m_TagString: Untagged
@@ -188,30 +187,6 @@ MonoBehaviour:
   eraseMode: 0
   LineContainer: {fileID: 0}
   radius: 0.5
---- !u!114 &294994268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 294994264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0de85da9864b0c49b9829072e71573e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  texture: {fileID: 0}
-  fillColor:
-    r: 0.45194244
-    g: 0.8773585
-    b: 0.16140087
-    a: 1
-  targetColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  readableTexture: {fileID: 0}
 --- !u!1 &332946658
 GameObject:
   m_ObjectHideFlags: 0
