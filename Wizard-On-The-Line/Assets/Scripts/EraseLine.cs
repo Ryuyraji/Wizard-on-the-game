@@ -5,29 +5,39 @@ using UnityEngine;
 public class EraseLine : MonoBehaviour
 {
     public bool eraseMode = false;
+    bool temp;
 
     [SerializeField]
     GameObject LineContainer;
 
     [SerializeField]
-    float radius = 0.1f;
+    float radius = 1.0f;
 
     void Start()
     {
         LineContainer = GameObject.Find("LineContainer");
+        temp = eraseMode;
     }
 
     void Update()
     {
         if (eraseMode)
         {
-            GetComponent<DrawLine>().drawMode = false;
-            // 지우개 모드이면서 마우스 클릭 중일 때
+            if (temp != eraseMode)
+                this.GetComponent<DrawLine>().OffSwitch();
+            
+            // 지우기 모드이면서 마우스 클릭 중일 때
             if (Input.GetMouseButtonDown(0))
             {
                 LineErase();
             }
         }
+        temp = eraseMode;
+    }
+
+    public void OffSwitch()
+    {
+        eraseMode = false;
     }
 
     void LineErase()

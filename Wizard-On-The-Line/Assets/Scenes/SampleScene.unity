@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eraseMode: 0
   LineContainer: {fileID: 0}
-  radius: 0.5
+  radius: 1
 --- !u!1 &332946658
 GameObject:
   m_ObjectHideFlags: 0
