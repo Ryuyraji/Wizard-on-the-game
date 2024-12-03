@@ -27,11 +27,16 @@ public class EraseLine : MonoBehaviour
                 this.GetComponent<DrawLine>().OffSwitch();
             
             // 지우기 모드이면서 마우스 클릭 중일 때
-            if (Input.GetMouseButtonDown(0))
-            {
-                LineErase();
-            }
-        }
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    LineErase();
+            //}
+			if (Input.GetMouseButton(0))
+			{
+				LineErase();
+			}
+
+		}
         temp = eraseMode;
     }
 
