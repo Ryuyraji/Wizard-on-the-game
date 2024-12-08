@@ -154,9 +154,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawMode: 1
   LinePrefab: {fileID: 2267706797380695238, guid: 1bf9627c8a530894f8edc0c0067942e1, type: 3}
-  LineContainer: {fileID: 0}
-  lineColor: {r: 0.10617733, g: 0, b: 1, a: 1}
-  lineWidth: 1.42
+  LineContainer: {fileID: 332946658}
+  lineColor: {r: 0, g: 0, b: 0, a: 1}
+  lineWidth: 0.5
 --- !u!4 &294994266
 Transform:
   m_ObjectHideFlags: 0
@@ -187,6 +187,7 @@ MonoBehaviour:
   eraseMode: 0
   LineContainer: {fileID: 0}
   radius: 1
+  eraseWholeObject: 1
 --- !u!1 &332946658
 GameObject:
   m_ObjectHideFlags: 0
