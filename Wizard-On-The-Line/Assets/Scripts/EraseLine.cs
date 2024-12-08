@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EraseLine : MonoBehaviour
@@ -11,9 +12,12 @@ public class EraseLine : MonoBehaviour
     GameObject LineContainer;
 
     [SerializeField]
-    float radius = 1.0f;
+    float radius = 0.1f;
 
-    void Start()
+    [SerializeField]
+    public bool eraseWholeObject = true;       // true : 전체삭제, false : 부분삭제
+
+	void Start()
     {
         LineContainer = GameObject.Find("LineContainer");
         temp = eraseMode;
@@ -57,11 +61,66 @@ public class EraseLine : MonoBehaviour
             {
                 if (collider is EdgeCollider2D && collider.gameObject == child.gameObject)
                 {
-                    // 라인 오브젝트 삭제
-                    Destroy(child.gameObject);
-                    break;
-                }
+					Destroy(child.gameObject);
+
+					//if (eraseWholeObject)
+					//{
+					//    // 전체 삭제
+					//    Destroy(child.gameObject);
+					//}
+					//else
+					//{
+					//    // 부분 삭제
+					//    PartiallyEraseLine(collider);
+					//}
+					//break;
+
+				}
             }
         }
     }
+
+	// 오브젝트 전체가 아닌 닿은 부분만 지워지게
+	void PartiallyEraseLine(Collider2D collider)
+    {
+        // 라인 관련 컴포넌트 가져오기
+		LineRenderer lineRenderer = collider.GetComponent<LineRenderer>();
+		EdgeCollider2D edgeCollider = collider.GetComponent<EdgeCollider2D>();
+
+		if (lineRenderer != null && edgeCollider != null)
+		{
+			// LineRenderer의 점 데이터 가져오기
+			// LineRenderer는 3D 좌표계에서 동작하기 때문에 Vector3로 선언
+
+			List<Vector3> points = new List<Vector3>();
+			for (int i = 0; i < lineRenderer.positionCount; i++)
+			{
+				points.Add(lineRenderer.GetPosition(i));
+			}
+
+            // 닿은 점의 인덱스 찾기
+            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Vector3 mousePos = new Vector3(mouseWorldPos.x, mouseWorldPos.y, 0);
+			List<Vector3> newPoints = new List<Vector3>();
+			foreach (var point in points)
+			{
+				// 반경 외의 점만 유지
+				if (Vector3.Distance(point, mousePos) > radius)
+				{
+					newPoints.Add(point);
+				}
+			}
+
+			// LineRenderer 업데이트
+			lineRenderer.positionCount = newPoints.Count;
+			lineRenderer.SetPositions(newPoints.ToArray());
+
+			// EdgeCollider2D 업데이트
+			List<Vector2> edgePoints = newPoints.ConvertAll(p => new Vector2(p.x, p.y));
+			edgeCollider.points = edgePoints.ToArray();
+
+			// 점이 없다면 오브젝트 삭제
+			if (newPoints.Count == 0) Destroy(collider.gameObject);
+		}
+	}
 }
