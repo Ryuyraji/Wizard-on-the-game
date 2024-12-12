@@ -14,10 +14,10 @@ public class DrawLine : MonoBehaviour
     GameObject LineContainer;       // 라인 프리팹 생성 위치
 
     [SerializeField]
-    Color lineColor = Color.white;  // 선 색상 (기본값: 흰색)
+    public Color lineColor = Color.white;  // 선 색상 (기본값: 흰색)
 
     [SerializeField]
-    float lineWidth = 0.1f;         // 선 굵기 (기본값: 0.1f)
+    public float lineWidth = 0.1f;         // 선 굵기 (기본값: 0.1f)
 
     LineRenderer lineRenderer;
     EdgeCollider2D edgeCollider;
