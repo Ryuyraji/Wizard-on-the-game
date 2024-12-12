@@ -185,9 +185,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eraseMode: 0
+  eraseWholeObject: 1
+  LinePrefab: {fileID: 2267706797380695238, guid: 1bf9627c8a530894f8edc0c0067942e1, type: 3}
   LineContainer: {fileID: 0}
   radius: 1
-  eraseWholeObject: 1
 --- !u!1 &332946658
 GameObject:
   m_ObjectHideFlags: 0
