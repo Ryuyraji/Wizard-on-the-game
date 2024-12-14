@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrawLine : MonoBehaviour
 {
     public bool drawMode = true;
-    bool temp;
+    bool current;
 
     [SerializeField]
     GameObject LinePrefab;          // 생성할 라인 프리팹
@@ -29,7 +29,7 @@ public class DrawLine : MonoBehaviour
     {
         LineContainer = GameObject.Find("LineContainer");
         if (drawMode) this.GetComponent<EraseLine>().eraseMode = false;
-        temp = drawMode;
+        current = drawMode;
     }
 
     void Update()
@@ -37,8 +37,8 @@ public class DrawLine : MonoBehaviour
 
         if (drawMode)
         {
-            if (temp != drawMode)
-                this.GetComponent<EraseLine>().OffSwitch();
+            //if (current != drawMode)
+            //    this.GetComponent<EraseLine>().OffSwitch();
 
             // 마우스 클릭 시 - 라인 인스턴스 생성
             if (Input.GetMouseButtonDown(0))
@@ -53,7 +53,7 @@ public class DrawLine : MonoBehaviour
                 LineEnd();
         }
 
-        temp = drawMode;
+        current = drawMode;
 
        /* if (Input.GetMouseButtonDown(1)) // 우클릭으로 색 채우기 실행
         {
@@ -67,6 +67,12 @@ public class DrawLine : MonoBehaviour
     {
         return edgeCollider.OverlapPoint(point);
     }*/
+
+    public void OnSwitch()
+    {
+        drawMode = true;
+        this.GetComponent<EraseLine>().OffSwitch();
+    }
 
     public void OffSwitch()
     {
