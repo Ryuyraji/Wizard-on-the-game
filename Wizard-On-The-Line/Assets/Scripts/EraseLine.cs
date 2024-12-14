@@ -33,8 +33,8 @@ public class EraseLine : MonoBehaviour
     {
         if (eraseMode)
         {
-            if (current != eraseMode)
-                this.GetComponent<DrawLine>().OffSwitch();
+            //if (current != eraseMode)
+            //    this.GetComponent<DrawLine>().OffSwitch();
             
             // 지우기 모드이면서 마우스 클릭 중일 때
             //if (Input.GetMouseButtonDown(0))
@@ -50,9 +50,21 @@ public class EraseLine : MonoBehaviour
         current = eraseMode;
     }
 
+    public void OnSwitch()
+    {
+        eraseMode = true;
+        this.GetComponent<DrawLine>().OffSwitch();
+    }
+
     public void OffSwitch()
     {
         eraseMode = false;
+    }
+
+    public void WholeOrPartialMode()
+    {
+        if (eraseWholeObject) eraseWholeObject = false;
+        else eraseWholeObject = true;
     }
 
     void LineErase()
